@@ -25,7 +25,7 @@ Users should be able to:
 
 ### Screenshot
 
-![]([./screenshot.jpg](https://github.com/Dev-Tron/advice-generator/blob/main/design/Screen%20Shot%202022-05-27%20at%2010.55.38%20AM.png?raw=true))
+![](https://github.com/Dev-Tron/advice-generator/blob/main/design/Screen%20Shot%202022-05-27%20at%2010.55.38%20AM.png?raw=true))
 
 ### Links
 
