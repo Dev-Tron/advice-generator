@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 import dMobile from './images/pattern-divider-mobile.svg';
 import deskTopDiv from './images/pattern-divider-desktop.svg';
 import diceRoll from './images/icon-dice.svg';
-
-
-
+import axios from "axios";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -82,31 +80,32 @@ const Dice = styled.img`
 function App() {
 const [text, setText] = useState("")
 
-const fetchAdvice = async () => {
-  const res = await fetch("https://api.adviceslip.com/advice")
-  const data = await res.json()
-  setText(data)
-}
+useEffect(() => {
+    axios.get("https://api.adviceslip.com/advice").then((res) => {
+      setText(res.data.slip);
+    });
+}, []);
 
-  useEffect(() => {
-    fetchAdvice()
-}, [])
+const newQuote = async () => {
+  const res = await axios.get("https://api.adviceslip.com/advice");
+  setText(res.data.slip);
+}
 
   return (
     <Container>
       <GlobalStyle />
         <Card>
           <Advice>
-            Advice #{text.slip.id}
+            Advice #{text?.id}
           </Advice>
           <Answer>
-            "{text.slip.advice}"
+            "{text?.advice}"
           </Answer>
           <picture>
             <source srcSet={deskTopDiv} media="(min-width: 1440px)" />
             <Symbol src={dMobile} alt='page-symbol' />
           </picture>
-          <Button onClick={fetchAdvice} >
+          <Button onClick={newQuote}>
               <Dice src={diceRoll} alt='dice-roll' />
           </Button>
         </Card>
